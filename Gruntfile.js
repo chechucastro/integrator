@@ -118,6 +118,14 @@ module.exports = function(grunt) {
 					}
 				}
 			}
+		},
+		copy: {
+		  files: {
+		    cwd: '../swgceram2/css/',  	// set working folder / root to copy
+		    src: '**/*',           		// copy all files and subfolders
+		    dest:'//10.132.20.189/SWG_recette-mut1r-ALL/swgceram2/css',    // destination folder
+		    expand: true           		// required when using cwd
+		  }
 		}
 	});
 
@@ -156,9 +164,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-postcss');
 	grunt.loadNpmTasks('grunt-express-server');
 	grunt.loadNpmTasks('grunt-browser-sync');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	grunt.registerTask('default', ['sass', 'watch']);
 	grunt.registerTask('serve', ['express', 'default']);
 	grunt.registerTask('bs', ['browserSync', 'default']);
+	grunt.registerTask('send', ['copy', 'default']); // Copy or place any files to another folder. (Reseau)
+
 
 };
